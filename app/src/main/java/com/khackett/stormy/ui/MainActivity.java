@@ -42,6 +42,7 @@ public class MainActivity extends ActionBarActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
 
     public static final String DAILY_FORECAST = "DAILY_FORECAST";
+    public static final String HOURLY_FORECAST = "HOURLY_FORECAST";
 
     private Forecast mForecast;
 
@@ -321,10 +322,19 @@ public class MainActivity extends ActionBarActivity {
     }
 
     // Butterknife also allows us to inject onClickListeners in the same way it does with views
-    @OnClick (R.id.dailyButton)
+    @OnClick(R.id.dailyButton)
     public void startDailyActivity(View view) {
         Intent intent = new Intent(this, DailyForecastActivity.class);
         intent.putExtra(DAILY_FORECAST, mForecast.getDailyForecast());
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.hourlyButton)
+    public void startHourlyActivity(View view) {
+        // whenever we start an activity with an intent, we need to use the .class property on the 2nd parameter
+        Intent intent = new Intent(this, HourlyForecastActivity.class);
+        intent.putExtra(HOURLY_FORECAST, mForecast.getHourlyForecast());
+        // start the activity with the new intent object
         startActivity(intent);
     }
 
