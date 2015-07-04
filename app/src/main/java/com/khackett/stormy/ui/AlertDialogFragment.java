@@ -1,10 +1,12 @@
-package com.khackett.stormy;
+package com.khackett.stormy.ui;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Bundle;
+
+import com.khackett.stormy.R;
 
 /**
  * Created by KHackett on 25/06/15.

@@ -1,13 +1,17 @@
-package com.khackett.stormy;
+package com.khackett.stormy.weather;
+
+import com.khackett.stormy.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
 /**
+ * Class to parse current weather data from the forecast API
+ * This is a model class in the MVC pattern
  * Created by KHackett on 26/06/15.
  */
-public class CurrentWeather {
+public class Current {
     private String mIcon;
     private long mTime;
     private double mTemperature;
