@@ -26,6 +26,6 @@ proguard/
 # Log Files
 *.log
 
-# .idea Files which are developer specific
+# idea Files which are developer specific
 **/.idea/workspace.xml
 **/.idea/tasks.xml
