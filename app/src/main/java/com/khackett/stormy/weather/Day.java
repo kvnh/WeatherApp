@@ -103,13 +103,7 @@ public class Day implements Parcelable {
         dest.writeString(mTimeZone);
     }
 
-    /**
-     * default constructor
-     */
-    public Day(){
-
-    }
-
+    // private constructor that reads in from a parcel object
     // read data in the same order as it was written in writeToParcel()
     // use a private constructor that takes a Parcel object as a parameter
     private Day(Parcel in) {
@@ -120,6 +114,15 @@ public class Day implements Parcelable {
         mTimeZone = in.readString();
     }
 
+
+    /**
+     * default constructor
+     */
+    public Day() {
+
+    }
+
+    // creator field that s required for Parcelable objects
     public static final Creator<Day> CREATOR = new Creator<Day>() {
         @Override
         public Day createFromParcel(Parcel source) {
