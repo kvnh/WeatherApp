@@ -1,6 +1,7 @@
 package com.khackett.stormy.adapters;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -14,6 +15,14 @@ import com.khackett.stormy.weather.Hour;
  * Created by KHackett on 05/07/15.
  */
 public class HourAdapter extends RecyclerView.Adapter<HourAdapter.HourViewHolder> {
+
+    private Hour[] mHours;
+
+    // constructor to create this adapter in the activity and then set its data
+    public HourAdapter(Hour[] hours) {
+        mHours = hours;
+    }
+
     /**
      * Called when RecyclerView needs a new {@link ViewHolder} of the given type to represent
      * an item.
@@ -36,7 +45,18 @@ public class HourAdapter extends RecyclerView.Adapter<HourAdapter.HourViewHolder
      */
     @Override
     public HourViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        // this method is called whenever a new viewholder is needed
+        // view are still going to be recycled just like they are in a list view
+        // this is where we create new ones as they are needed
+
+        // inflate the layout and create the root view
+        // get the context from the parent parameter passed in
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.hourly_list_item, parent, false);
+
+        // use the view to create the view holder with the constructor we made
+        HourViewHolder viewHolder = new HourViewHolder(view);
+        return viewHolder;
     }
 
     /**
@@ -59,6 +79,11 @@ public class HourAdapter extends RecyclerView.Adapter<HourAdapter.HourViewHolder
     @Override
     public void onBindViewHolder(HourViewHolder holder, int position) {
 
+        // this method is the bridge between the adapter and the bind method we created
+        // in our HourViewHolder class below.  Call the method with the correct hour
+        // from the array - got using the position parameter passed in
+        holder.bindHour(mHours[position]);
+
     }
 
     /**
@@ -68,7 +93,7 @@ public class HourAdapter extends RecyclerView.Adapter<HourAdapter.HourViewHolder
      */
     @Override
     public int getItemCount() {
-        return 0;
+        return mHours.length;
     }
 
     // we want to use view holder objects
@@ -102,6 +127,5 @@ public class HourAdapter extends RecyclerView.Adapter<HourAdapter.HourViewHolder
             mIconImageView.setImageResource(hour.getIconId());
         }
     }
-
 
 }
