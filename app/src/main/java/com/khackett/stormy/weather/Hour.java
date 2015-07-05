@@ -3,6 +3,9 @@ package com.khackett.stormy.weather;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Class to parse hourly weather data from the forecast API
  * This is a model class in the MVC pattern
@@ -37,8 +40,9 @@ public class Hour implements Parcelable {
         mSummary = summary;
     }
 
-    public double getTemperature() {
-        return mTemperature;
+    // round the temperature to the nearest int
+    public int getTemperature() {
+        return (int) Math.round(mTemperature);
     }
 
     public void setTemperature(double temperature) {
@@ -47,6 +51,11 @@ public class Hour implements Parcelable {
 
     public String getIcon() {
         return mIcon;
+    }
+
+    // convert the icon string into an int for the correct drawable
+    public int getIconId() {
+        return Forecast.getIconId(mIcon);
     }
 
     public void setIcon(String icon) {
@@ -60,6 +69,14 @@ public class Hour implements Parcelable {
     public void setTimezone(String timezone) {
         mTimezone = timezone;
     }
+
+    // get time to be represented by just the hour
+    public String getHour() {
+        SimpleDateFormat formatter = new SimpleDateFormat("h a");
+        Date date = new Date(mTime * 1000);
+        return formatter.format(date);
+    }
+
 
     /**
      * Describe the kinds of special objects contained in this Parcelable's
