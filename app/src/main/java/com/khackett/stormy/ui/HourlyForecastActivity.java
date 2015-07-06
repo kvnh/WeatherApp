@@ -41,7 +41,7 @@ public class HourlyForecastActivity extends ActionBarActivity {
         mHours = Arrays.copyOf(parcelables, parcelables.length, Hour[].class);
 
         // create the adapter
-        HourAdapter adapter = new HourAdapter(mHours);
+        HourAdapter adapter = new HourAdapter(this, mHours);
         // set it as the adapter for the recycler view
         mRecyclerView.setAdapter(adapter);
 
